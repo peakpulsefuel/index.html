@@ -6,7 +6,6 @@
 <title>PeakPulse — Énergie naturelle alsacienne</title>
 
 <style>
-
 :root{
 --accent:#ff8c00;
 --bg:#0e0e0e;
@@ -24,250 +23,106 @@ color:var(--text);
 }
 
 /* CONTAINER */
-
-.container{
-max-width:1200px;
-margin:auto;
-padding:30px;
-}
+.container{max-width:1200px;margin:auto;padding:30px;}
 
 /* LOGO */
-
-.logo-img{
-width:140px;
-margin-bottom:40px;
-filter:drop-shadow(0 8px 20px rgba(0,0,0,.7));
-}
+.logo-img{width:140px;margin-bottom:40px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.7));}
 
 /* HERO */
-
 .hero{
-min-height:80vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:
-linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.85)),
-url("https://images.unsplash.com/photo-1549575810-b9f36f79f1b1?auto=format&fit=crop&w=2000&q=80");
-background-size:cover;
-background-position:center;
-border-radius:30px;
-padding:100px 20px;
-}
-  <img src="assets/logo.png" class="logo-img" alt="PeakPulse">
-
-.hero h1{
-font-size:clamp(2.6rem,6vw,4.5rem);
-letter-spacing:.08em;
-font-weight:900;
-margin-bottom:20px;
+min-height:80vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+text-align:center;background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.85)),url("https://images.unsplash.com/photo-1549575810-b9f36f79f1b1?auto=format&fit=crop&w=2000&q=80");
+background-size:cover;background-position:center;border-radius:30px;padding:100px 20px;
 }
 
-.hero p{
-color:var(--muted);
-letter-spacing:.2em;
-}
+.hero h1{font-size:clamp(2.6rem,6vw,4.5rem);letter-spacing:.08em;font-weight:900;margin-bottom:20px;}
+.hero p{color:var(--muted);letter-spacing:.2em;}
 
 /* ABOUT */
-
-.about{
-background:var(--card);
-border-radius:24px;
-padding:70px 50px;
-margin:100px 0;
-text-align:center;
-border:1px solid rgba(255,255,255,.05);
-}
-
-.about h2{
-font-size:2.3rem;
-margin-bottom:25px;
-}
-
-.about p{
-max-width:850px;
-margin:auto;
-line-height:1.8;
-color:var(--muted);
-}
+.about{background:var(--card);border-radius:24px;padding:70px 50px;margin:100px 0;text-align:center;border:1px solid rgba(255,255,255,.05);}
+.about h2{font-size:2.3rem;margin-bottom:25px;}
+.about p{max-width:850px;margin:auto;line-height:1.8;color:var(--muted);}
 
 /* PRODUCTS */
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;margin-bottom:100px;}
+.product{background:var(--card);border-radius:24px;padding:50px;text-align:center;border:1px solid rgba(255,255,255,.05);transition:.4s;}
+.product:hover{transform:translateY(-10px);border-color:rgba(255,140,0,.5);}
+.product h3{letter-spacing:.2em;margin-bottom:15px;}
+.price{font-size:3rem;color:var(--accent);font-weight:900;margin-bottom:10px;}
 
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:40px;
-margin-bottom:100px;
+/* FEEDBACK SECTION */
+.feedback{
+background:var(--card);border-radius:24px;padding:70px 50px;margin:80px 0;text-align:center;
+border:2px solid rgba(255,140,0,.3);position:relative;overflow:hidden;
 }
+.feedback::before{
+content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+background:linear-gradient(90deg,transparent,rgba(255,140,0,.1),transparent);
+transition:left .8s;
+}
+.feedback:hover::before{left:100%;}
+.feedback h2{font-size:2.3rem;margin-bottom:20px;color:var(--text);}
+.feedback p{max-width:700px;margin:0 auto 50px;line-height:1.7;color:var(--muted);font-size:1.1rem;}
+.feedback form{max-width:550px;margin:0 auto;background:rgba(255,255,255,.03);padding:40px;border-radius:20px;border:1px solid rgba(255,140,0,.2);}
+.feedback input,.feedback textarea{
+width:100%;padding:16px;border:1px solid rgba(255,140,0,.3);border-radius:12px;
+background:rgba(40,40,40,.8);color:var(--text);font-size:1rem;margin-bottom:20px;
+box-sizing:border-box;
+}
+.feedback textarea{min-height:110px;resize:vertical;}
+.stars{display:flex;gap:8px;justify-content:center;margin:20px 0;font-size:2rem;}
+.star{cursor:pointer;color:#444;transition:.3s;}
+.star.active{color:var(--accent);}
+.feedback button{
+width:100%;padding:18px;background:linear-gradient(135deg,var(--accent),#ff4500);
+color:white;border:none;border-radius:40px;font-weight:700;font-size:1.1rem;
+cursor:pointer;transition:.3s;letter-spacing:.1em;
+}
+.feedback button:hover{transform:scale(1.02);box-shadow:0 10px 25px rgba(255,140,0,.4);}
+.success-message{
+display:none;background:linear-gradient(135deg,#10b981,#059669);color:white;
+padding:25px;border-radius:16px;margin-top:25px;font-weight:600;
+}
+.success-message.show{display:block;animation:fadeIn 0.5s;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
-.product{
-background:var(--card);
-border-radius:24px;
-padding:50px;
-text-align:center;
-border:1px solid rgba(255,255,255,.05);
-transition:.4s;
-}
-
-.product:hover{
-transform:translateY(-10px);
-border-color:rgba(255,140,0,.5);
-}
-
-.product h3{
-letter-spacing:.2em;
-margin-bottom:15px;
-}
-
-.price{
-font-size:3rem;
-color:var(--accent);
-font-weight:900;
-margin-bottom:10px;
-}
+.avis-complet{color:#10b981;font-weight:600;margin-top:15px;}
 
 /* WHY */
-
-.why{
-text-align:center;
-margin-bottom:120px;
-}
-
-.why h2{
-font-size:2.5rem;
-margin-bottom:60px;
-}
-
-.features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:40px;
-}
+.why{text-align:center;margin-bottom:120px;}
+.why h2{font-size:2.5rem;margin-bottom:60px;}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:40px;}
 
 /* FLIP CARDS */
-
-.flip-card{
-perspective:1200px;
-height:260px;
-}
-
-.flip-inner{
-width:100%;
-height:100%;
-transition:transform .8s;
-transform-style:preserve-3d;
-}
-
-.flip-card:hover .flip-inner{
-transform:rotateY(180deg);
-}
-
-.flip-front,.flip-back{
-position:absolute;
-width:100%;
-height:100%;
-background:var(--card);
-border-radius:22px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-padding:40px;
-backface-visibility:hidden;
-border:1px solid rgba(255,255,255,.05);
-text-align:center;
-}
-
-.flip-front span{
-font-size:3rem;
-margin-bottom:10px;
-}
-
-.flip-front strong{
-font-size:1.3rem;
-}
-
-.flip-back{
-transform:rotateY(180deg);
-color:var(--muted);
-line-height:1.6;
-}
+.flip-card{perspective:1200px;height:260px;}
+.flip-inner{width:100%;height:100%;transition:transform .8s;transform-style:preserve-3d;}
+.flip-card:hover .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{position:absolute;width:100%;height:100%;background:var(--card);border-radius:22px;
+display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;
+backface-visibility:hidden;border:1px solid rgba(255,255,255,.05);text-align:center;}
+.flip-front span{font-size:3rem;margin-bottom:10px;}
+.flip-front strong{font-size:1.3rem;}
+.flip-back{transform:rotateY(180deg);color:var(--muted);line-height:1.6;}
 
 /* CTA */
-
-.cta{
-background:#141414;
-padding:90px 40px;
-border-radius:30px;
-text-align:center;
-border:1px solid rgba(255,140,0,.4);
-margin-bottom:100px;
-}
-
-.cta h2{
-font-size:2.8rem;
-margin-bottom:25px;
-}
-
-.btn{
-display:inline-block;
-padding:18px 55px;
-border-radius:40px;
-border:2px solid var(--accent);
-color:white;
-text-decoration:none;
-font-weight:700;
-letter-spacing:.15em;
-transition:.4s;
-}
-
-.btn:hover{
-background:var(--accent);
-color:black;
-}
+.cta{background:#141414;padding:90px 40px;border-radius:30px;text-align:center;border:1px solid rgba(255,140,0,.4);margin-bottom:100px;}
+.cta h2{font-size:2.8rem;margin-bottom:25px;}
+.btn{display:inline-block;padding:18px 55px;border-radius:40px;border:2px solid var(--accent);color:white;text-decoration:none;font-weight:700;letter-spacing:.15em;transition:.4s;}
+.btn:hover{background:var(--accent);color:black;}
 
 /* SOCIAL */
-
-.social{
-display:flex;
-justify-content:center;
-gap:25px;
-margin-bottom:80px;
-flex-wrap:wrap;
-}
-
-.social a{
-color:var(--accent);
-text-decoration:none;
-border:1px solid rgba(255,140,0,.4);
-padding:14px 30px;
-border-radius:40px;
-}
+.social{display:flex;justify-content:center;gap:25px;margin-bottom:80px;flex-wrap:wrap;}
+.social a{color:var(--accent);text-decoration:none;border:1px solid rgba(255,140,0,.4);padding:14px 30px;border-radius:40px;}
 
 /* FOOTER */
-
-footer{
-text-align:center;
-padding:40px;
-color:#777;
-border-top:1px solid rgba(255,255,255,.05);
-}
+footer{text-align:center;padding:40px;color:#777;border-top:1px solid rgba(255,255,255,.05);}
 
 /* MOBILE */
-
-@media(max-width:768px){
-.hero{min-height:70vh;}
-.about{padding:50px 30px;}
-.cta h2{font-size:2.2rem;}
-}
-
+@media(max-width:768px){.hero{min-height:70vh;}.about,.feedback{padding:50px 30px;}.cta h2{font-size:2.2rem;}}
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
 <section class="hero">
@@ -281,13 +136,39 @@ border-top:1px solid rgba(255,255,255,.05);
 <p>PeakPulse transforme les fruits alsaciens en énergie premium pour accompagner tous les sportifs, du loisir au haut niveau. Des recettes propres, efficaces et locales.</p>
 </section>
 
+<!-- 🆕 SECTION MON AVIS -->
+<section class="feedback">
+<h2>Votre avis compte</h2>
+<p>Dites-nous ce que vous pensez de votre <strong>PeakPulse</strong>. Un retour rapide = <strong>10% sur votre prochain achat</strong> !</p>
+
+<form id="feedbackForm">
+<input type="email" id="email" placeholder="Votre email (pour votre code 10%)" required>
+<div style="background:rgba(50,50,50,.5);padding:20px;border-radius:12px;margin:20px 0;">
+  <label style="display:block;color:var(--muted);margin-bottom:15px;font-weight:500;">Notez votre expérience (1-5 ⭐) :</label>
+  <div class="stars" id="stars">
+    <span class="star" data-value="1">⭐</span>
+    <span class="star" data-value="2">⭐</span>
+    <span class="star" data-value="3">⭐</span>
+    <span class="star" data-value="4">⭐</span>
+    <span class="star" data-value="5">⭐</span>
+  </div>
+  <div id="selectedRating" class="avis-complet" style="display:none;">Vous avez choisi <span id="ratingValue"></span>/5 ⭐</div>
+</div>
+<textarea id="comment" placeholder="Votre expérience avec PeakPulse... (facultatif)" rows="4"></textarea>
+<button type="submit">📤 Envoyer mon avis + Recevoir code 10%</button>
+<div id="successMessage" class="success-message">
+✅ Merci ! Votre code <strong>PEAK10</strong> est actif pour votre prochain achat.<br>
+<small>Valable 3 mois • Copié dans votre presse-papier</small>
+</div>
+</form>
+</section>
+
 <section class="products">
 <div class="product">
 <h3>SINGLE</h3>
 <div class="price">4,85€</div>
 <p>150g • Une session</p>
 </div>
-
 <div class="product">
 <h3>PACK X4</h3>
 <div class="price">19,65€</div>
@@ -297,9 +178,7 @@ border-top:1px solid rgba(255,255,255,.05);
 
 <section class="why">
 <h2>Pourquoi PeakPulse ?</h2>
-
 <div class="features">
-
 <div class="flip-card">
 <div class="flip-inner">
 <div class="flip-front">
@@ -356,7 +235,6 @@ Débutant → Avancé
 </div>
 </div>
 </div>
-
 </div>
 </section>
 
@@ -375,6 +253,71 @@ PeakPulse — Nutrition sportive alsacienne 🇫🇷
 </footer>
 
 </div>
+
+<script>
+// ⭐ Système d'étoiles interactives
+const stars = document.querySelectorAll('.star');
+const ratingValue = document.getElementById('ratingValue');
+const selectedRating = document.getElementById('selectedRating');
+let selectedStar = 0;
+
+stars.forEach((star, index) => {
+  star.addEventListener('click', () => {
+    selectedStar = index + 1;
+    stars.forEach((s, i) => {
+      s.classList.toggle('active', i < selectedStar);
+    });
+    ratingValue.textContent = selectedStar;
+    selectedRating.style.display = 'block';
+  });
+  
+  star.addEventListener('mouseover', () => {
+    stars.forEach((s, i) => {
+      s.classList.toggle('active', i <= index);
+    });
+  });
+  
+  star.addEventListener('mouseout', () => {
+    stars.forEach((s, i) => {
+      s.classList.toggle('active', i < selectedStar);
+    });
+  });
+});
+
+// 📤 Formulaire feedback + code 10%
+document.getElementById('feedbackForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  if(selectedStar === 0) {
+    alert('Veuillez noter votre expérience (1-5 étoiles)');
+    return;
+  }
+  
+  const email = document.getElementById('email').value;
+  const comment = document.getElementById('comment').value;
+  
+  // 💾 Sauvegarde local (persiste sur ce navigateur)
+  const feedback = {
+    email: email,
+    rating: selectedStar,
+    comment: comment,
+    date: new Date().toLocaleDateString('fr-FR'),
+    code: 'PEAK10'
+  };
+  
+  localStorage.setItem('peakpulse_feedback', JSON.stringify(feedback));
+  
+  // 📋 Copie code dans presse-papier
+  navigator.clipboard.writeText('PEAK10').then(() => {
+    document.getElementById('successMessage').classList.add('show');
+    document.getElementById('feedbackForm').style.display = 'none';
+    
+    // 🎉 Analytics basique (tu peux connecter Google Analytics)
+    console.log('✅ Feedback reçu:', feedback);
+    gtag?.('event', 'feedback_submitted', { rating: selectedStar });
+  });
+});
+</script>
 
 </body>
 </html>
