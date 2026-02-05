@@ -1,417 +1,379 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PeakPulse - Énergie Locale Alsacienne</title>
-    <style>
-        /* --- RESET & BASE STYLES --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', 'Helvetica Neue', Roboto, sans-serif;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
-            color: #f2f2f2;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PeakPulse — Énergie naturelle alsacienne</title>
 
-        /* --- LOGO P ÉCLAIR SVG --- */
-        .logo {
-            width: 120px; height: 120px; margin: 0 auto 30px;
-            filter: drop-shadow(0 8px 25px rgba(255,140,0,0.3));
-        }
-        .logo svg { width: 100%; height: 100%; }
+<style>
 
-        /* --- HERO SECTION --- */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 140px 20px 120px;
-            color: #fff;
-            background: 
-                linear-gradient(135deg, rgba(13,13,13,0.95) 0%, rgba(26,26,26,0.98) 100%),
-                url('https://images.unsplash.com/photo-1590080875835-13f7c1d3f040?auto=format&fit=crop&w=2000&q=85') center/cover;
-            position: relative;
-            min-height: 80vh;
-        }
-        .hero::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255,140,0,0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255,140,0,0.05) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        .hero h1 {
-            font-size: clamp(2.8rem, 8vw, 5rem);
-            font-weight: 900;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: #fff;
-            text-shadow: 
-                0 2px 10px rgba(0,0,0,0.8),
-                0 0 30px rgba(255,140,0,0.1);
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-        .hero p {
-            font-size: 1.3rem;
-            font-weight: 300;
-            opacity: 0.9;
-            letter-spacing: 0.03em;
-        }
+:root{
+--accent:#ff8c00;
+--bg:#0e0e0e;
+--card:#1a1a1a;
+--text:#f2f2f2;
+--muted:#bdbdbd;
+}
 
-        /* --- ABOUT BRAND --- */
-        .about-brand {
-            background: rgba(18,18,18,0.97);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 24px;
-            padding: 70px 50px;
-            text-align: center;
-            margin: 80px 0;
-            backdrop-filter: blur(20px);
-            box-shadow: 
-                0 20px 60px rgba(0,0,0,0.4),
-                0 0 40px rgba(255,140,0,0.06);
-            position: relative;
-            overflow: hidden;
-        }
-        .about-brand::before {
-            content: '';
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 4px;
-            background: linear-gradient(90deg, transparent, #ff8c00, transparent);
-        }
-        .about-brand h2 {
-            font-size: 2.4rem;
-            background: linear-gradient(135deg, #ffb347, #ff8c00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 900;
-            letter-spacing: 0.02em;
-            margin-bottom: 30px;
-        }
-        .about-brand p {
-            font-size: 1.15rem;
-            color: #e8e8e8;
-            max-width: 900px;
-            margin: 0 auto 25px;
-            line-height: 1.85;
-        }
+*{margin:0;padding:0;box-sizing:border-box;}
 
-        /* --- PRODUCTS --- */
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 50px;
-            margin: 80px 0;
-        }
-        .product-card {
-            background: linear-gradient(145deg, rgba(25,25,25,0.98), rgba(12,12,12,0.98));
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 24px;
-            padding: 50px 35px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-            position: relative;
-            overflow: hidden;
-        }
-        .product-card::before {
-            content: '';
-            position: absolute; top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,140,0,0.06), transparent);
-            transition: left 0.8s;
-        }
-        .product-card:hover::before { left: 100%; }
-        .product-card:hover {
-            transform: translateY(-12px);
-            border-color: rgba(255,140,0,0.4);
-            box-shadow: 0 25px 70px rgba(255,140,0,0.2);
-        }
-        .product-card h3 {
-            font-size: 1.6rem;
-            text-transform: uppercase;
-            color: #fff;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            margin-bottom: 20px;
-        }
-        .product-price {
-            font-size: clamp(2.8rem, 7vw, 4.2rem);
-            background: linear-gradient(135deg, #ff8c00, #ffb347);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 900;
-            margin: 25px 0 15px;
-            letter-spacing: -0.02em;
-        }
-        .product-card p { color: #ccc; font-size: 1.1rem; }
+body{
+font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+background:linear-gradient(135deg,#0b0b0b,#121212);
+color:var(--text);
+}
 
-        /* --- WHY US --- */
-        .why-us { text-align: center; margin: 100px 0; }
-        .why-us h2 {
-            font-size: 2.6rem;
-            color: #fff;
-            margin-bottom: 60px;
-            font-weight: 900;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 40px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        .feature {
-            background: rgba(35,35,35,0.9);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 20px;
-            padding: 45px 30px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .feature::before {
-            content: '';
-            position: absolute; top: 0; left: 0;
-            width: 4px; height: 100%;
-            background: linear-gradient(to bottom, transparent, #ff8c00, transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .feature:hover::before { opacity: 1; }
-        .feature:hover {
-            background: rgba(45,45,45,0.95);
-            transform: translateY(-8px);
-            border-color: rgba(255,140,0,0.3);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-        }
-        .feature span {
-            font-size: 3rem; display: block; margin-bottom: 20px;
-            filter: drop-shadow(0 4px 12px rgba(255,140,0,0.3));
-        }
-        .feature strong { 
-            font-size: 1.3rem; color: #fff; display: block; margin-bottom: 12px;
-            font-weight: 700; letter-spacing: 0.5px;
-        }
+/* CONTAINER */
 
-        /* --- CTA --- */
-        .cta {
-            text-align: center;
-            background: linear-gradient(135deg, #ff8c00 0%, #ff4500 100%);
-            border-radius: 30px;
-            margin: 100px 0;
-            padding: 90px 50px;
-            color: #fff;
-            box-shadow: 
-                0 30px 80px rgba(255,140,0,0.3),
-                inset 0 2px 10px rgba(255,255,255,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        .cta::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M0 50 Q25 30 50 50 T100 50' stroke='rgba(255,255,255,0.1)' stroke-width='0.5' fill='none'/></svg>") repeat;
-            opacity: 0.3;
-        }
-        .cta h2 { 
-            font-size: 3rem; margin-bottom: 25px; font-weight: 900;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .btn {
-            display: inline-block;
-            padding: 22px 60px;
-            background: rgba(13,13,13,0.95);
-            color: #fff;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 800;
-            font-size: 1.2rem;
-            transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-            text-decoration: none;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-        .btn::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-        }
-        .btn:hover::before { transform: translateX(100%); }
-        .btn:hover {
-            background: rgba(255,255,255,0.95);
-            color: #ff4500;
-            transform: scale(1.05) translateY(-2px);
-            border-color: rgba(255,255,255,0.5);
-            box-shadow: 0 20px 50px rgba(255,140,0,0.4);
-        }
+.container{
+max-width:1200px;
+margin:auto;
+padding:30px;
+}
 
-        /* --- SOCIAL --- */
-        .social {
-            display: flex; justify-content: center; flex-wrap: wrap; 
-            gap: 30px; margin: 70px 0; 
-        }
-        .social a {
-            color: #ff8c00;
-            text-decoration: none;
-            font-weight: 700;
-            background: rgba(255,255,255,0.06);
-            padding: 18px 32px;
-            border-radius: 50px;
-            border: 1px solid rgba(255,140,0,0.3);
-            transition: all 0.4s ease;
-            letter-spacing: 0.5px;
-            backdrop-filter: blur(10px);
-        }
-        .social a:hover {
-            background: linear-gradient(135deg, #ff8c00, #ff4500);
-            color: #fff;
-            transform: translateY(-4px);
-            box-shadow: 0 15px 40px rgba(255,140,0,0.3);
-        }
+/* LOGO */
 
-        /* --- FOOTER --- */
-        .footer {
-            text-align: center;
-            padding: 60px 20px;
-            color: #888;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            font-size: 1.05rem;
-            letter-spacing: 0.5px;
-        }
+.logo-img{
+width:140px;
+margin-bottom:40px;
+filter:drop-shadow(0 8px 20px rgba(0,0,0,.7));
+}
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .hero { padding: 100px 20px 80px; min-height: 70vh; }
-            .hero h1 { font-size: 2.5rem; letter-spacing: 0.03em; }
-            .logo { width: 90px; height: 90px; }
-            .products { grid-template-columns: 1fr; gap: 30px; }
-            .social { flex-direction: column; align-items: center; gap: 20px; }
-        }
-    </style>
+/* HERO */
+
+.hero{
+min-height:80vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:
+linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.85)),
+url("https://images.unsplash.com/photo-1549575810-b9f36f79f1b1?auto=format&fit=crop&w=2000&q=80");
+background-size:cover;
+background-position:center;
+border-radius:30px;
+padding:100px 20px;
+}
+
+.hero h1{
+font-size:clamp(2.6rem,6vw,4.5rem);
+letter-spacing:.08em;
+font-weight:900;
+margin-bottom:20px;
+}
+
+.hero p{
+color:var(--muted);
+letter-spacing:.2em;
+}
+
+/* ABOUT */
+
+.about{
+background:var(--card);
+border-radius:24px;
+padding:70px 50px;
+margin:100px 0;
+text-align:center;
+border:1px solid rgba(255,255,255,.05);
+}
+
+.about h2{
+font-size:2.3rem;
+margin-bottom:25px;
+}
+
+.about p{
+max-width:850px;
+margin:auto;
+line-height:1.8;
+color:var(--muted);
+}
+
+/* PRODUCTS */
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:40px;
+margin-bottom:100px;
+}
+
+.product{
+background:var(--card);
+border-radius:24px;
+padding:50px;
+text-align:center;
+border:1px solid rgba(255,255,255,.05);
+transition:.4s;
+}
+
+.product:hover{
+transform:translateY(-10px);
+border-color:rgba(255,140,0,.5);
+}
+
+.product h3{
+letter-spacing:.2em;
+margin-bottom:15px;
+}
+
+.price{
+font-size:3rem;
+color:var(--accent);
+font-weight:900;
+margin-bottom:10px;
+}
+
+/* WHY */
+
+.why{
+text-align:center;
+margin-bottom:120px;
+}
+
+.why h2{
+font-size:2.5rem;
+margin-bottom:60px;
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:40px;
+}
+
+/* FLIP CARDS */
+
+.flip-card{
+perspective:1200px;
+height:260px;
+}
+
+.flip-inner{
+width:100%;
+height:100%;
+transition:transform .8s;
+transform-style:preserve-3d;
+}
+
+.flip-card:hover .flip-inner{
+transform:rotateY(180deg);
+}
+
+.flip-front,.flip-back{
+position:absolute;
+width:100%;
+height:100%;
+background:var(--card);
+border-radius:22px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:40px;
+backface-visibility:hidden;
+border:1px solid rgba(255,255,255,.05);
+text-align:center;
+}
+
+.flip-front span{
+font-size:3rem;
+margin-bottom:10px;
+}
+
+.flip-front strong{
+font-size:1.3rem;
+}
+
+.flip-back{
+transform:rotateY(180deg);
+color:var(--muted);
+line-height:1.6;
+}
+
+/* CTA */
+
+.cta{
+background:#141414;
+padding:90px 40px;
+border-radius:30px;
+text-align:center;
+border:1px solid rgba(255,140,0,.4);
+margin-bottom:100px;
+}
+
+.cta h2{
+font-size:2.8rem;
+margin-bottom:25px;
+}
+
+.btn{
+display:inline-block;
+padding:18px 55px;
+border-radius:40px;
+border:2px solid var(--accent);
+color:white;
+text-decoration:none;
+font-weight:700;
+letter-spacing:.15em;
+transition:.4s;
+}
+
+.btn:hover{
+background:var(--accent);
+color:black;
+}
+
+/* SOCIAL */
+
+.social{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-bottom:80px;
+flex-wrap:wrap;
+}
+
+.social a{
+color:var(--accent);
+text-decoration:none;
+border:1px solid rgba(255,140,0,.4);
+padding:14px 30px;
+border-radius:40px;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:40px;
+color:#777;
+border-top:1px solid rgba(255,255,255,.05);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+.hero{min-height:70vh;}
+.about{padding:50px 30px;}
+.cta h2{font-size:2.2rem;}
+}
+
+</style>
 </head>
+
 <body>
-    <div class="container">
 
-        <!-- Hero avec LOGO P ÉCLAIR -->
-        <section class="hero">
-            <!-- Logo P en forme d'éclair -->
-            <svg class="logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#ffb347"/>
-                        <stop offset="50%" stop-color="#ff8c00"/>
-                        <stop offset="100%" stop-color="#cc7000"/>
-                    </linearGradient>
-                    <filter id="glow">
-                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                        <feMerge> 
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-                </defs>
-                <!-- P stylisé en éclair -->
-                <path d="M35 20 L45 20 L42 35 L55 35 L48 55 L65 55 L58 75 L75 75 L68 95 L85 95 L78 110 L95 110 L88 120 L60 105 L45 115 L30 95 L25 80 L40 80 L35 65 L50 65 L45 50 L35 50 L30 35 Z" 
-                      fill="url(#logoGrad)" 
-                      stroke="#fff" stroke-width="1.5" 
-                      stroke-linejoin="round"
-                      filter="url(#glow)"/>
-                <!-- Effet éclair subtil -->
-                <path d="M38 25 L48 18 L52 32 L45 28 L55 42" 
-                      fill="none" 
-                      stroke="rgba(255,255,255,0.6)" 
-                      stroke-width="1.2" 
-                      stroke-linecap="round" 
-                      opacity="0.7"/>
-            </svg>
-            
-            <h1>ÉNERGIE NATURELLE<br>POUR DES PERFORMANCES DURABLES</h1>
-            <p>SUPPLÉMENTS SPORTIFS PREMIUM • FABRIQUÉS EN ALSACE</p>
-        </section>
+<div class="container">
 
-        <!-- About -->
-        <section class="about-brand">
-            <h2>PeakPulse</h2>
-            <p><strong>PeakPulse</strong> fusionne l’excellence sportive et le terroir alsacien. Nos fruit leathers enrichis en électrolytes transforment les surplus fruitiers locaux en carburant premium pour vos performances.</p>
-            <p>Conçus à Strasbourg pour les athlètes exigeants — running, VTT, trail, salle. Authenticité. Précision. Puissance.</p>
-        </section>
+<section class="hero">
+<img src="assets/logo.png" class="logo-img" alt="PeakPulse">
+<h1>ÉNERGIE NATURELLE<br>POUR PERFORMANCES DURABLES</h1>
+<p>SUPPLÉMENTS SPORTIFS • FABRIQUÉS EN ALSACE</p>
+</section>
 
-        <!-- Products -->
-        <section class="products">
-            <div class="product-card">
-                <h3>Single</h3>
-                <div class="product-price">4,85€</div>
-                <p>150g – Votre énergie pour une session</p>
-            </div>
-            <div class="product-card">
-                <h3>Pack x4</h3>
-                <div class="product-price">19,65€</div>
-                <p>600g – Équipez-vous pour la semaine</p>
-            </div>
-        </section>
+<section class="about">
+<h2>PeakPulse</h2>
+<p>PeakPulse transforme les fruits alsaciens en énergie premium pour accompagner tous les sportifs, du loisir au haut niveau. Des recettes propres, efficaces et locales.</p>
+</section>
 
-        <!-- Why Us -->
-        <section class="why-us">
-            <h2>Pourquoi PeakPulse ?</h2>
-            <div class="features">
-                <div class="feature">
-                    <span>🍎</span>
-                    <strong>Fruits alsaciens</strong>
-                    Transformés à Strasbourg
-                </div>
-                <div class="feature">
-                    <span>⚡</span>
-                    <strong>Électrolytes naturels</strong>
-                    Na/K/Mg optimisés
-                </div>
-                <div class="feature">
-                    <span>♻️</span>
-                    <strong>100% compostable</strong>
-                    Sachets EN13432
-                </div>
-                <div class="feature">
-                    <span>🏃‍♂️</span>
-                    <strong>Multi-sports</strong>
-                    Trail, VTT, running, gym
-                </div>
-            </div>
-        </section>
+<section class="products">
+<div class="product">
+<h3>SINGLE</h3>
+<div class="price">4,85€</div>
+<p>150g • Une session</p>
+</div>
 
-        <!-- CTA -->
-        <section class="cta">
-            <h2>Prêt à performer ?</h2>
-            <p>Votre énergie alsacienne vous attend</p>
-            <a href="#contact" class="btn">Précommander maintenant</a>
-        </section>
+<div class="product">
+<h3>PACK X4</h3>
+<div class="price">19,65€</div>
+<p>600g • Une semaine</p>
+</div>
+</section>
 
-        <!-- Social -->
-        <section class="social">
-            <a href="https://instagram.com/peakpulse">@peakpulse</a>
-            <a href="mailto:Peakpulseinfo@gmail.com">📧 Contact</a>
-            <a href="tel:+33612345678">📱 06 12 34 56 78</a>
-        </section>
+<section class="why">
+<h2>Pourquoi PeakPulse ?</h2>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <p>PeakPulse — Nutrition sportive alsacienne 🇫🇷 | Performance locale, puissance universelle</p>
-        </footer>
-    </div>
+<div class="features">
+
+<div class="flip-card">
+<div class="flip-inner">
+<div class="flip-front">
+<span>🍎</span>
+<strong>Fruits alsaciens</strong>
+</div>
+<div class="flip-back">
+Pommes, poires, quetsches, clémentines, oranges<br><br>
+Ferme Saint-Ancré<br>
+Ferme Wurtz
+</div>
+</div>
+</div>
+
+<div class="flip-card">
+<div class="flip-inner">
+<div class="flip-front">
+<span>⚡</span>
+<strong>Électrolytes naturels</strong>
+</div>
+<div class="flip-back">
+28g glucides (pomme + miel)<br>
+300mg sodium (sel gemme)<br>
+150mg potassium (banane)<br>
+20mg magnésium (ortie)
+</div>
+</div>
+</div>
+
+<div class="flip-card">
+<div class="flip-inner">
+<div class="flip-front">
+<span>♻️</span>
+<strong>100% compostable</strong>
+</div>
+<div class="flip-back">
+Conforme EN13432<br>
+Se décompose industriellement en moins de 90 jours<br>
+Aucun résidu toxique
+</div>
+</div>
+</div>
+
+<div class="flip-card">
+<div class="flip-inner">
+<div class="flip-front">
+<span>🏃‍♂️</span>
+<strong>Multi-sport</strong>
+</div>
+<div class="flip-back">
+Running • Trail • VTT<br>
+Fitness • Randonnée • Cross-training<br>
+Débutant → Avancé
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="cta">
+<h2>Prêt à performer ?</h2>
+<a href="#" class="btn">Précommander</a>
+</section>
+
+<div class="social">
+<a href="#">Instagram</a>
+<a href="#">Contact</a>
+</div>
+
+<footer>
+PeakPulse — Nutrition sportive alsacienne 🇫🇷
+</footer>
+
+</div>
+
 </body>
 </html>
