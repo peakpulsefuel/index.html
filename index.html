@@ -53,6 +53,38 @@ body{font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gr
 .social a{color:var(--accent);text-decoration:none;border:1px solid rgba(255,140,0,.4);padding:14px 30px;border-radius:40px;}
 footer{text-align:center;padding:40px;color:#777;border-top:1px solid rgba(255,255,255,.05);}
 @media(max-width:768px){.hero{min-height:70vh;}.about,.feedback{padding:50px 30px;}.cta h2{font-size:2.2rem;}}
+  @media (max-width: 768px) {
+  .hero { min-height: 70vh; }
+  .about, .feedback { padding: 50px 30px; }
+  .cta h2 { font-size: 2.2rem; }
+  
+  /* 🆕 FIX MOBILE FLIP CARDS */
+  .flip-card {
+    perspective: none !important;
+    height: auto !important;
+  }
+  .flip-inner {
+    transform: none !important;
+    transition: none !important;
+  }
+  .flip-card:hover .flip-inner {
+    transform: none !important;
+  }
+  .flip-front, .flip-back {
+    position: relative !important;
+    backface-visibility: visible !important;
+    transform: none !important;
+  }
+  .flip-back {
+    display: none;
+  }
+  .flip-card:hover .flip-back {
+    display: flex;
+  }
+  .flip-card:hover .flip-front {
+    display: none;
+  }
+}
 </style>
 </head>
 <body>
