@@ -20,7 +20,7 @@ nav a:hover{color:var(--accent);}
 .logo-img{width:140px;margin-bottom:40px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.7));}
 
 /* 🆕 HERO avec nouveau background */
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:100px;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),url("https://images.unsplash.com/photo-1519710164239-da542f4586e9?auto=format&fit=crop&w=2000&q=85");background-size:cover;background-position:center;background-attachment:fixed;border-radius:0;}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:100px;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),url("assets/background.png");background-size:cover;background-position:center;background-attachment:fixed;border-radius:0;}
 .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(45deg,rgba(255,140,0,0.05),transparent);opacity:0;transition:.6s;}
 .hero:hover::before{opacity:1;}
 .hero h1{font-size:clamp(2.6rem,6vw,4.5rem);letter-spacing:.08em;font-weight:900;margin-bottom:20px;}
@@ -44,7 +44,6 @@ nav a:hover{color:var(--accent);}
 .feedback button:hover{transform:scale(1.02);box-shadow:0 10px 25px rgba(255,140,0,.4);}
 .success-message{display:none;background:linear-gradient(135deg,#10b981,#059669);color:white;padding:25px;border-radius:16px;margin-top:25px;font-weight:600;}
 .success-message.show{display:block;}
-url ("assets/Bildschirmfoto 2026-02-05 um 06.53.57.png")
 .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;margin-bottom:100px;}
 .product{background:var(--card);border-radius:24px;padding:50px;text-align:center;border:1px solid rgba(255,255,255,.05);transition:.4s;}
 .product:hover{transform:translateY(-10px);border-color:rgba(255,140,0,.5);}
