@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PeakPulse — Énergie naturelle alsacienne</title>
+<style>
+:root{--accent:#ff8c00;--bg:#0e0e0e;--card:#1a1a1a;--text:#f2f2f2;--muted:#bdbdbd;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(135deg,#0b0b0b,#121212);color:var(--text);}
+
+/* 🆕 HEADER */
+header{position:fixed;top:0;left:0;right:0;background:rgba(13,13,13,0.95);backdrop-filter:blur(20px);z-index:1000;padding:15px 0;border-bottom:1px solid rgba(255,140,0,0.3);}
+.header-content{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 30px;}
+.logo-header{width:50px;height:50px;filter:drop-shadow(0 4px 15px rgba(255,140,0,0.4));}
+nav a{color:var(--text);text-decoration:none;font-weight:500;margin:0 15px;font-size:.9rem;transition:.3s;}
+nav a:hover{color:var(--accent);}
+
+.container{max-width:1200px;margin:auto;padding:30px;}
+.logo-img{width:140px;margin-bottom:40px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.7));}
+
+/* 🆕 HERO avec nouveau background */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:100px;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),url("assets/background.png");background-size:cover;background-position:center;background-attachment:fixed;border-radius:0;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(45deg,rgba(255,140,0,0.05),transparent);opacity:0;transition:.6s;}
+.hero:hover::before{opacity:1;}
+.hero h1{font-size:clamp(2.6rem,6vw,4.5rem);letter-spacing:.08em;font-weight:900;margin-bottom:20px;}
+.hero p{color:var(--muted);letter-spacing:.2em;}
+
+.about{background:var(--card);border-radius:24px;padding:70px 50px;margin:100px 0;text-align:center;border:1px solid rgba(255,255,255,.05);}
+.about h2{font-size:2.3rem;margin-bottom:25px;}
+.about p{max-width:850px;margin:auto;line-height:1.8;color:var(--muted);}
+
+.feedback{background:var(--card);border-radius:24px;padding:70px 50px;margin:80px 0;text-align:center;border:2px solid rgba(255,140,0,.3);}
+.feedback h2{font-size:2.3rem;margin-bottom:20px;color:var(--text);}
+.feedback p{max-width:700px;margin:0 auto 50px;line-height:1.7;color:var(--muted);font-size:1.1rem;}
+.feedback form{max-width:550px;margin:0 auto;background:rgba(255,255,255,.03);padding:40px;border-radius:20px;border:1px solid rgba(255,140,0,.2);}
+.feedback input,.feedback textarea{width:100%;padding:16px;border:1px solid rgba(255,140,0,.3);border-radius:12px;background:rgba(40,40,40,.8);color:var(--text);font-size:1rem;margin-bottom:20px;box-sizing:border-box;}
+.feedback textarea{min-height:110px;resize:vertical;}
+.stars{display:flex;gap:8px;justify-content:center;margin:20px 0;font-size:2rem;}
+.star{cursor:pointer;color:#444;transition:.3s;}
+.star.active{color:var(--accent);}
+.selected-rating{display:none;color:#10b981;font-weight:600;margin-top:15px;}
+.feedback button{width:100%;padding:18px;background:linear-gradient(135deg,var(--accent),#ff4500);color:white;border:none;border-radius:40px;font-weight:700;font-size:1.1rem;cursor:pointer;transition:.3s;letter-spacing:.1em;}
+.feedback button:hover{transform:scale(1.02);box-shadow:0 10px 25px rgba(255,140,0,.4);}
+.success-message{display:none;background:linear-gradient(135deg,#10b981,#059669);color:white;padding:25px;border-radius:16px;margin-top:25px;font-weight:600;}
+.success-message.show{display:block;}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;margin-bottom:100px;}
+.product{background:var(--card);border-radius:24px;padding:50px;text-align:center;border:1px solid rgba(255,255,255,.05);transition:.4s;}
+.product:hover{transform:translateY(-10px);border-color:rgba(255,140,0,.5);}
+.product h3{letter-spacing:.2em;margin-bottom:15px;}
+.price{font-size:3rem;color:var(--accent);font-weight:900;margin-bottom:10px;}
+
+.why{text-align:center;margin-bottom:120px;}
+.why h2{font-size:2.5rem;margin-bottom:60px;}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:40px;}
+.flip-card{perspective:1200px;height:260px;}
+.flip-inner{width:100%;height:100%;transition:transform .8s;transform-style:preserve-3d;}
+.flip-card:hover .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{position:absolute;width:100%;height:100%;background:var(--card);border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;backface-visibility:hidden;border:1px solid rgba(255,255,255,.05);text-align:center;}
+.flip-front span{font-size:3rem;margin-bottom:10px;}
+.flip-front strong{font-size:1.3rem;}
+.flip-back{transform:rotateY(180deg);color:var(--muted);line-height:1.6;}
+
+.cta{background:#141414;padding:90px 40px;border-radius:30px;text-align:center;border:1px solid rgba(255,140,0,.4);margin-bottom:100px;}
+.cta h2{font-size:2.8rem;margin-bottom:25px;}
+.btn{display:inline-block;padding:18px 55px;border-radius:40px;border:2px solid var(--accent);color:white;text-decoration:none;font-weight:700;letter-spacing:.15em;transition:.4s;}
+.btn:hover{background:var(--accent);color:black;}
+
+.social{display:flex;justify-content:center;gap:25px;margin-bottom:80px;flex-wrap:wrap;}
+.social a{color:var(--accent);text-decoration:none;border:1px solid rgba(255,140,0,.4);padding:14px 30px;border-radius:40px;}
+footer{text-align:center;padding:40px;color:#777;border-top:1px solid rgba(255,255,255,.05);}
+
+@media(max-width:768px){
+header{padding:12px 0;}
+.header-content{padding:0 20px;}
+.logo-header{width:40px;height:40px;}
+nav{display:none;}
+.hero{padding-top:80px;min-height:90vh;background-attachment:scroll;}
+.about,.feedback{padding:50px 30px;}
+.cta h2{font-size:2.2rem;}
+/* MOBILE FLIP FIX */
+.flip-card{perspective:none;height:auto;}
+.flip-inner{transform:none;transition:none;}
+.flip-card:hover .flip-inner{transform:none;}
+.flip-front,.flip-back{position:relative;backface-visibility:visible;transform:none;}
+.flip-back{display:none;}
+.flip-card:active .flip-back{display:flex;}
+.flip-card:active .flip-front{display:none;}
+}
+</style>
+</head>
+<body>
+<!-- 🆕 HEADER FIXE -->
+<header>
+<div class="header-content">
+<a href="#"><img src="assets/logo.png" class="logo-header" alt="PeakPulse"></a>
+<nav>
+<a href="#products">Produits</a>
+<a href="#why">Pourquoi ?</a>
+<a href="#feedback">Avis</a>
+<a href="#cta">Précommander</a>
+</nav>
+</div>
+</header>
+
+<div class="container">
+<section class="hero">
+<img src="assets/logo.png" class="logo-img" alt="PeakPulse">
+<h1>ÉNERGIE NATURELLE<br>POUR PERFORMANCES DURABLES</h1>
+<p>SUPPLÉMENTS SPORTIFS • FABRIQUÉS EN ALSACE</p>
+</section>
+
+<!-- RESTE DU SITE IDENTIQUE -->
+<section class="about">
+<h2>PeakPulse</h2>
+<p>PeakPulse transforme les fruits alsaciens en énergie premium pour accompagner tous les sportifs, du loisir au haut niveau. Des recettes propres, efficaces et locales.</p>
+</section>
+
+<section class="feedback">
+<h2>Votre avis compte</h2>
+<p>Dites-nous ce que vous pensez de votre <strong>PeakPulse</strong>. Un retour rapide = <strong>10% sur votre prochain achat</strong> !</p>
+<form id="feedbackForm">
+<input type="email" id="email" placeholder="Votre email (pour votre code 10%)" required>
+<div style="background:rgba(50,50,50,.5);padding:20px;border-radius:12px;margin:20px 0;">
+<label style="display:block;color:var(--muted);margin-bottom:15px;font-weight:500;">Notez votre expérience (1-5 ⭐) :</label>
+<div class="stars" id="stars">
+<span class="star" data-value="1">⭐</span><span class="star" data-value="2">⭐</span><span class="star" data-value="3">⭐</span><span class="star" data-value="4">⭐</span><span class="star" data-value="5">⭐</span>
+</div>
+<div id="selectedRating" class="selected-rating">Vous avez choisi <span id="ratingValue"></span>/5 ⭐</div>
+</div>
+<textarea id="comment" placeholder="Votre expérience avec PeakPulse... (facultatif)" rows="4"></textarea>
+<button type="submit">📤 Envoyer + Recevoir code 10%</button>
+<div id="successMessage" class="success-message">
+✅ Merci ! Votre code <strong>PEAK10</strong> est actif pour votre prochain achat.<br>
+<small>Valable 3 mois • Copié dans votre presse-papier</small>
+</div>
+</form>
+</section>
+
+<section id="products" class="products">
+<div class="product">
+<h3>SINGLE</h3>
+<div class="price">4,85€</div>
+<p>150g • Une session</p>
+</div>
+<div class="product">
+<h3>PACK X4</h3>
+<div class="price">19,65€</div>
+<p>600g • Une semaine</p>
+</div>
+</section>
+
+<section id="why" class="why">
+<h2>Pourquoi PeakPulse ?</h2>
+<div class="features">
+<div class="flip-card">
+<div class="flip-inner">
+<div class="flip-front">
+<span>🍎</span><strong>Fruits alsaciens</strong>
+</div>
+<div class="flip-back">Pommes, poires, quetsches, clémentines, oranges<br><br>Ferme Saint-Ancré<br>Ferme Wurtz</div>
+</div>
+</div>
+<div class="flip-card">
+<div class="flip-inner">
+<div class="flip-front">
+<span>⚡</span><strong>Électrolytes naturels</strong>
+</div>
+<div class="flip-back">28g glucides (pomme + miel)<br>300mg sodium (sel gemme)<br>150mg potassium (banane)<br>20mg magnésium (ortie)</div>
+</div>
+</div>
+<div class="flip-card">
+<div class="flip-inner">
+<div class="flip-front">
+<span>♻️</span><strong>100% compostable</strong>
+</div>
+<div class="flip-back">Conforme EN13432<br>Se décompose industriellement en moins de 90 jours<br>Aucun résidu toxique</div>
+</div>
+</div>
+<div class="flip-card">
+<div class="flip-inner">
+<div class="flip-front">
+<span>🏃‍♂️</span><strong>Multi-sport</strong>
+</div>
+<div class="flip-back">Running • Trail • VTT<br>Fitness • Randonnée • Cross-training<br>Débutant → Avancé</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="cta" class="cta">
+<h2>Prêt à performer ?</h2>
+<a href="#" class="btn">Précommander</a>
+</section>
+
+<div class="social">
+<a href="#">Instagram</a>
+<a href="#">Contact</a>
+</div>
+
+<footer>PeakPulse — Nutrition sportive alsacienne 🇫🇷</footer>
+</div>
+
+<script>
+const stars=document.querySelectorAll('.star'),ratingValue=document.getElementById('ratingValue'),selectedRating=document.getElementById('selectedRating'),feedbackForm=document.getElementById('feedbackForm');let selectedStar=0;
+stars.forEach((star,index)=>{
+star.addEventListener('click',()=>{
+selectedStar=index+1;
+stars.forEach((s,i)=>s.classList.toggle('active',i<selectedStar));
+ratingValue.textContent=selectedStar;
+selectedRating.style.display='block';
+});
+star.addEventListener('mouseover',()=>stars.forEach((s,i)=>s.classList.toggle('active',i<=index)));
+star.addEventListener('mouseout',()=>stars.forEach((s,i)=>s.classList.toggle('active',i<selectedStar)));
+});
+feedbackForm.addEventListener('submit',e=>{
+e.preventDefault();
+if(selectedStar===0){alert('Veuillez noter votre expérience (1-5 étoiles)');return;}
+const email=document.getElementById('email').value,comment=document.getElementById('comment').value;
+localStorage.setItem('peakpulse_feedback',JSON.stringify({email,rating:selectedStar,comment,date:new Date().toLocaleDateString('fr-FR'),code:'PEAK10'}));
+navigator.clipboard.writeText('PEAK10').then(()=>{
+document.getElementById('successMessage').classList.add('show');
+feedbackForm.style.display='none';
+console.log('✅ Feedback reçu:',{email,rating:selectedStar});
+});
+});
+</script>
+</body>
+</html>
