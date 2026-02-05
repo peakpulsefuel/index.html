@@ -8,14 +8,28 @@
 :root{--accent:#ff8c00;--bg:#0e0e0e;--card:#1a1a1a;--text:#f2f2f2;--muted:#bdbdbd;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(135deg,#0b0b0b,#121212);color:var(--text);}
+
+/* 🆕 HEADER */
+header{position:fixed;top:0;left:0;right:0;background:rgba(13,13,13,0.95);backdrop-filter:blur(20px);z-index:1000;padding:15px 0;border-bottom:1px solid rgba(255,140,0,0.3);}
+.header-content{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 30px;}
+.logo-header{width:50px;height:50px;filter:drop-shadow(0 4px 15px rgba(255,140,0,0.4));}
+nav a{color:var(--text);text-decoration:none;font-weight:500;margin:0 15px;font-size:.9rem;transition:.3s;}
+nav a:hover{color:var(--accent);}
+
 .container{max-width:1200px;margin:auto;padding:30px;}
 .logo-img{width:140px;margin-bottom:40px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.7));}
-.hero{min-height:80vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.85)),url("https://images.unsplash.com/photo-1549575810-b9f36f79f1b1?auto=format&fit=crop&w=2000&q=80");background-size:cover;background-position:center;border-radius:30px;padding:100px 20px;}
+
+/* 🆕 HERO avec nouveau background */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:100px;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),url("https://images.unsplash.com/photo-1519710164239-da542f4586e9?auto=format&fit=crop&w=2000&q=85");background-size:cover;background-position:center;background-attachment:fixed;border-radius:0;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(45deg,rgba(255,140,0,0.05),transparent);opacity:0;transition:.6s;}
+.hero:hover::before{opacity:1;}
 .hero h1{font-size:clamp(2.6rem,6vw,4.5rem);letter-spacing:.08em;font-weight:900;margin-bottom:20px;}
 .hero p{color:var(--muted);letter-spacing:.2em;}
+
 .about{background:var(--card);border-radius:24px;padding:70px 50px;margin:100px 0;text-align:center;border:1px solid rgba(255,255,255,.05);}
 .about h2{font-size:2.3rem;margin-bottom:25px;}
 .about p{max-width:850px;margin:auto;line-height:1.8;color:var(--muted);}
+
 .feedback{background:var(--card);border-radius:24px;padding:70px 50px;margin:80px 0;text-align:center;border:2px solid rgba(255,140,0,.3);}
 .feedback h2{font-size:2.3rem;margin-bottom:20px;color:var(--text);}
 .feedback p{max-width:700px;margin:0 auto 50px;line-height:1.7;color:var(--muted);font-size:1.1rem;}
@@ -30,11 +44,13 @@ body{font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gr
 .feedback button:hover{transform:scale(1.02);box-shadow:0 10px 25px rgba(255,140,0,.4);}
 .success-message{display:none;background:linear-gradient(135deg,#10b981,#059669);color:white;padding:25px;border-radius:16px;margin-top:25px;font-weight:600;}
 .success-message.show{display:block;}
+
 .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;margin-bottom:100px;}
 .product{background:var(--card);border-radius:24px;padding:50px;text-align:center;border:1px solid rgba(255,255,255,.05);transition:.4s;}
 .product:hover{transform:translateY(-10px);border-color:rgba(255,140,0,.5);}
 .product h3{letter-spacing:.2em;margin-bottom:15px;}
 .price{font-size:3rem;color:var(--accent);font-weight:900;margin-bottom:10px;}
+
 .why{text-align:center;margin-bottom:120px;}
 .why h2{font-size:2.5rem;margin-bottom:60px;}
 .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:40px;}
@@ -45,49 +61,49 @@ body{font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gr
 .flip-front span{font-size:3rem;margin-bottom:10px;}
 .flip-front strong{font-size:1.3rem;}
 .flip-back{transform:rotateY(180deg);color:var(--muted);line-height:1.6;}
+
 .cta{background:#141414;padding:90px 40px;border-radius:30px;text-align:center;border:1px solid rgba(255,140,0,.4);margin-bottom:100px;}
 .cta h2{font-size:2.8rem;margin-bottom:25px;}
 .btn{display:inline-block;padding:18px 55px;border-radius:40px;border:2px solid var(--accent);color:white;text-decoration:none;font-weight:700;letter-spacing:.15em;transition:.4s;}
 .btn:hover{background:var(--accent);color:black;}
+
 .social{display:flex;justify-content:center;gap:25px;margin-bottom:80px;flex-wrap:wrap;}
 .social a{color:var(--accent);text-decoration:none;border:1px solid rgba(255,140,0,.4);padding:14px 30px;border-radius:40px;}
 footer{text-align:center;padding:40px;color:#777;border-top:1px solid rgba(255,255,255,.05);}
-@media(max-width:768px){.hero{min-height:70vh;}.about,.feedback{padding:50px 30px;}.cta h2{font-size:2.2rem;}}
-  @media (max-width: 768px) {
-  .hero { min-height: 70vh; }
-  .about, .feedback { padding: 50px 30px; }
-  .cta h2 { font-size: 2.2rem; }
-  
-  /* 🆕 FIX MOBILE FLIP CARDS */
-  .flip-card {
-    perspective: none !important;
-    height: auto !important;
-  }
-  .flip-inner {
-    transform: none !important;
-    transition: none !important;
-  }
-  .flip-card:hover .flip-inner {
-    transform: none !important;
-  }
-  .flip-front, .flip-back {
-    position: relative !important;
-    backface-visibility: visible !important;
-    transform: none !important;
-  }
-  .flip-back {
-    display: none;
-  }
-  .flip-card:hover .flip-back {
-    display: flex;
-  }
-  .flip-card:hover .flip-front {
-    display: none;
-  }
+
+@media(max-width:768px){
+header{padding:12px 0;}
+.header-content{padding:0 20px;}
+.logo-header{width:40px;height:40px;}
+nav{display:none;}
+.hero{padding-top:80px;min-height:90vh;background-attachment:scroll;}
+.about,.feedback{padding:50px 30px;}
+.cta h2{font-size:2.2rem;}
+/* MOBILE FLIP FIX */
+.flip-card{perspective:none;height:auto;}
+.flip-inner{transform:none;transition:none;}
+.flip-card:hover .flip-inner{transform:none;}
+.flip-front,.flip-back{position:relative;backface-visibility:visible;transform:none;}
+.flip-back{display:none;}
+.flip-card:active .flip-back{display:flex;}
+.flip-card:active .flip-front{display:none;}
 }
 </style>
 </head>
 <body>
+<!-- 🆕 HEADER FIXE -->
+<header>
+<div class="header-content">
+<a href="#"><img src="assets/logo.png" class="logo-header" alt="PeakPulse"></a>
+<nav>
+<a href="#products">Produits</a>
+<a href="#why">Pourquoi ?</a>
+<a href="#feedback">Avis</a>
+<a href="#cta">Précommander</a>
+</nav>
+</div>
+</header>
+
 <div class="container">
 <section class="hero">
 <img src="assets/logo.png" class="logo-img" alt="PeakPulse">
@@ -95,6 +111,7 @@ footer{text-align:center;padding:40px;color:#777;border-top:1px solid rgba(255,2
 <p>SUPPLÉMENTS SPORTIFS • FABRIQUÉS EN ALSACE</p>
 </section>
 
+<!-- RESTE DU SITE IDENTIQUE -->
 <section class="about">
 <h2>PeakPulse</h2>
 <p>PeakPulse transforme les fruits alsaciens en énergie premium pour accompagner tous les sportifs, du loisir au haut niveau. Des recettes propres, efficaces et locales.</p>
@@ -108,11 +125,7 @@ footer{text-align:center;padding:40px;color:#777;border-top:1px solid rgba(255,2
 <div style="background:rgba(50,50,50,.5);padding:20px;border-radius:12px;margin:20px 0;">
 <label style="display:block;color:var(--muted);margin-bottom:15px;font-weight:500;">Notez votre expérience (1-5 ⭐) :</label>
 <div class="stars" id="stars">
-<span class="star" data-value="1">⭐</span>
-<span class="star" data-value="2">⭐</span>
-<span class="star" data-value="3">⭐</span>
-<span class="star" data-value="4">⭐</span>
-<span class="star" data-value="5">⭐</span>
+<span class="star" data-value="1">⭐</span><span class="star" data-value="2">⭐</span><span class="star" data-value="3">⭐</span><span class="star" data-value="4">⭐</span><span class="star" data-value="5">⭐</span>
 </div>
 <div id="selectedRating" class="selected-rating">Vous avez choisi <span id="ratingValue"></span>/5 ⭐</div>
 </div>
@@ -125,7 +138,7 @@ footer{text-align:center;padding:40px;color:#777;border-top:1px solid rgba(255,2
 </form>
 </section>
 
-<section class="products">
+<section id="products" class="products">
 <div class="product">
 <h3>SINGLE</h3>
 <div class="price">4,85€</div>
@@ -138,7 +151,7 @@ footer{text-align:center;padding:40px;color:#777;border-top:1px solid rgba(255,2
 </div>
 </section>
 
-<section class="why">
+<section id="why" class="why">
 <h2>Pourquoi PeakPulse ?</h2>
 <div class="features">
 <div class="flip-card">
@@ -176,7 +189,7 @@ footer{text-align:center;padding:40px;color:#777;border-top:1px solid rgba(255,2
 </div>
 </section>
 
-<section class="cta">
+<section id="cta" class="cta">
 <h2>Prêt à performer ?</h2>
 <a href="#" class="btn">Précommander</a>
 </section>
